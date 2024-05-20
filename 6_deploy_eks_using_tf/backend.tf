@@ -1,13 +1,12 @@
 # Backend configuration for saving and locking tfstate file
-/*terraform {
+
+terraform {
 
   backend "s3" {
-    bucket         = "eks-tf-s3-19880528-devenv"
+    bucket         = "eks-tf-s3-19471508-devenv"
     key            = "platform/terraform.tfstate"
     region         = "ap-south-1"
     encrypt        = false
     dynamodb_table = "eks-tf-dynamo-db"
   }
 }
-
-*/
