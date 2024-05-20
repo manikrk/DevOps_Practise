@@ -1,1 +1,2 @@
-# DevOps_Practise
+# devops-projects
+practice repository for DevOps
