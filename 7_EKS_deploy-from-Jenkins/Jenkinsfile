@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         AWS_ACCESS_KEY_ID = credentials ('ACCESS_KEY_ID')
-        AWS_SECRETE_ACCESS_KEY = credentials ('SECRETE_ACCESS_KEY')
+        AWS_SECRET_ACCESS_KEY = credentials ('SECRET_ACCESS_KEY')
         AWS_DEFAULT_REGION = "ap-south-1"
     }
 
@@ -45,7 +45,7 @@ pipeline {
             }
         }
 
-        stage('Previewing the Infra using terraform') {
+        stage('Previewing the Infra using terraform'){
             steps {
                 script{
                     dir('c_eks_from_jenkins') {
@@ -60,7 +60,7 @@ pipeline {
             steps {
                 script{
                     dir('c_eks_from_jenkins') {
-                        sh 'terraform $action --auto-approve'    //parameterized
+                        sh 'terraform $action --auto-approve'    // Build With Parameters
                     }  
                 }
             }
