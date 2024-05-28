@@ -45,7 +45,7 @@ pipeline {
             }
         }
 
-        stage('Previewing the Infra using terraform'){
+        stage('Previewing the Infra using terraform') {
             steps {
                 script{
                     dir('c_eks_from_jenkins') {
@@ -60,7 +60,7 @@ pipeline {
             steps {
                 script{
                     dir('c_eks_from_jenkins') {
-                        sh 'terraform $action --auto-approve'    // Build With Parameters
+                        sh 'terraform $action --auto-approve'    //parameterized
                     }  
                 }
             }
