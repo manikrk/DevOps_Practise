@@ -34,8 +34,8 @@ scaling_max_size        = "2"
 scaling_min_size        = "1"
 instance_types          = "t2.medium"
 #security_group_id      = "sg-00123545abcdef"
-cluster_role_arn    = "arn:aws:iam::554568167212:role/vrp_cluster_role"    # IAM Cluster Role arn#
-node_group_role_arn = "arn:aws:iam::554568167212:role/vrp_node_group_role" # IAM Cluster Role arn#
+cluster_role_arn    = "arn:aws:iam::<12 digit AWS Acct ID>:role/vrp_cluster_role"    # IAM Cluster Role arn#
+node_group_role_arn = "arn:aws:iam::<12 digit AWS Acct ID>:role/vrp_node_group_role" # IAM Cluster Role arn#
 
 
 # Inputs for IAM Variables
