@@ -1,16 +1,33 @@
----
+echo 
+
+'---
 apiVersion: v1
 kind: Pod
 metadata:
+<<<<<<< Updated upstream:k8s/1-c-ubuntu-os.yaml
   name: 1-c-ubuntu-os
 
 spec:
   containers:
   - name: 1-c-ubuntu-os
+=======
+  name: annotation
+  annotations:
+    description: pod creation to test the annoatation(comments on pod)
+
+spec:
+  containers:
+  - name: c02_annotation
+>>>>>>> Stashed changes:k8s/draftcopy.yaml
     image: ubuntu
-    command: ["/bin/bash", "-c", "while true ; do echo hello all ; sleep 5; done"]
+    command: ["/bin/bash" ,"-c", "while true ; do echo c02_annotation.yaml ; sleep 5; done"]
     resources:
       limits:
         memory: "128Mi"
         cpu: "500m"
+<<<<<<< Updated upstream:k8s/1-c-ubuntu-os.yaml
 
+=======
+    
+' > c02_annotation.yaml
+>>>>>>> Stashed changes:k8s/draftcopy.yaml
