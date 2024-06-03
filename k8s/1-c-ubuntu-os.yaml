@@ -1,6 +1,4 @@
-echo 
-
-'---
+---
 apiVersion: v1
 kind: Pod
 metadata:
@@ -8,7 +6,7 @@ metadata:
 
 spec:
   containers:
-  - name: 2-c-annotation
+  - name: 1-c-ubuntu-os
     image: ubuntu
     command: ["/bin/bash" ,"-c", "while true ; do echo c02_annotation.yaml ; sleep 5; done"]
     resources:
