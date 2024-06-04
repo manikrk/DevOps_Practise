@@ -1,0 +1,32 @@
+---
+kind: ReplicationController
+apiVersion: v1
+metadata:
+  name: 8-c-replication-controller
+  annotations:
+    description: test pod with ReplicationController
+  labels:
+    class: pod
+    env: testing
+
+spec:
+  replicas: 3
+  selector:
+    env: testing
+  template:
+    metadata:
+      name: 8-c-replication-controller
+      labels:
+        class: pod
+        env: testing
+
+    spec:
+      containers:
+        - name: 8-c-replication-controller
+          image: ubuntu
+          command: ["/bin/bash", "-c", "while true; do echo 8-c-replication-controller; sleep 5;done"]
+          resources:
+            limits:
+              memory: "64Mi"
+              cpu: "100m"
+
