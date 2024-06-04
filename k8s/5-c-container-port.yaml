@@ -2,7 +2,7 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: 5-c-container-port.yaml
+  name: 5-c-container-port
   annotations:
     description: creating container along with port assignment
 
@@ -12,10 +12,9 @@ spec:
       image: nginx
     #command: ["/bin/bash", "-c", "while true ; do echo 5-c-container-port ; sleep 5 ; done"]
     
-    ports:
-      - containerPort: 80
-    
-    resources:
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
+      ports:
+        - containerPort: 80
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
