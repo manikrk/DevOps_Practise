@@ -27,6 +27,6 @@ spec:
           command: ["/bin/bash", "-c", "while true; do echo 8-c-replication-controller; sleep 5;done"]
           resources:
             limits:
-              memory: "64Mi"
-              cpu: "100m"
+              memory: "16Mi"
+              cpu: "50m"
 

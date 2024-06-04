@@ -13,5 +13,5 @@ spec:
     command: ["/bin/bash", "-c", "while true ; do echo 2-c-annotation.yaml ; sleep 5 ; done"]
     resources:
       limits:
-        memory: "128Mi"
-        cpu: "500m"
+        memory: "16Mi"
+        cpu: "50m"

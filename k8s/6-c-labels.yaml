@@ -17,8 +17,8 @@ spec:
       command: ["/bin/bash", "-c", "while true ; do echo 6-c-labels ; sleep 5 ; done"]
       resources:
         limits:
-          memory: "128Mi"
-          cpu: "500m"
+          memory: "16Mi"
+          cpu: "50m"
 
 
 
