@@ -11,6 +11,6 @@ spec:
     command: ["/bin/bash", "-c", "while true ; do echo 1-c-ubuntu-os ; sleep 5 ; done"]
     resources:
       limits:
-        memory: "16Mi"
-        cpu: "50m"
+        memory: "64Mi"
+        cpu: "100m"
 

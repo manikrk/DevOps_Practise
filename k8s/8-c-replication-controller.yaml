@@ -4,29 +4,28 @@ apiVersion: v1
 metadata:
   name: 8-c-replication-controller
   annotations:
-    description: test pod with ReplicationController
-  labels:
-    class: pod
-    env: testing
+    description: test-pod for repliaction-controller
 
 spec:
-  replicas: 3
+  replicas: 2
   selector:
-    env: testing
+    env: dev-env
   template:
     metadata:
       name: 8-c-replication-controller
       labels:
-        class: pod
-        env: testing
+        env: dev-env
 
     spec:
       containers:
         - name: 8-c-replication-controller
           image: ubuntu
-          command: ["/bin/bash", "-c", "while true; do echo 8-c-replication-controller; sleep 5;done"]
+          command: ["/bin/bash", "-c", "while true ; do echo 8-c-replication-controller ; sleep 5 ;done"]
           resources:
             limits:
-              memory: "16Mi"
-              cpu: "50m"
+              cpu: "250m"
+              memory: "128Mi"
 
+      nodeSelector:
+        ec2type: t2.medium        
+      restartPolicy: Always

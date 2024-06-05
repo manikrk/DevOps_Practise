@@ -1,0 +1,38 @@
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+  name: 9-c-replicaset
+  annotations:
+    describe: testpod created for 9-c-replicaset
+  labels:
+    env: dev-env
+    class: notpods
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - key: env
+        operator: In
+        values: [pods, dev-env]
+      - key: class
+        operator: NotIn
+        values: [apps]
+  template:
+    metadata:
+      name: 9-c-replicaset
+      labels:
+        env: dev-env
+        class: notpods
+    spec:
+      containers:
+        - name: 9-c-replicaset
+          image: ubuntu
+          command: ["/bin/bash", "-c", "while true ; do echo 9-c-replicaset; sleep 5; done"]
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+      nodeSelector:
+        ec2type: t2.medium
+      restartPolicy: Always
+

@@ -18,8 +18,8 @@ spec:
       command: ["/bin/bash", "-c", "while true; do echo 7-c-nodeselector; sleep 5; done"]
       resources:
         limits:
-          memory: "16Mi"
-          cpu: "50m"
+          memory: "64Mi"
+          cpu: "100m"
 
   nodeSelector:
     ec2type: t2.medium
