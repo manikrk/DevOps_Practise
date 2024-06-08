@@ -23,8 +23,8 @@ spec:
           command: ["/bin/bash", "-c", "while true ; do echo 8-c-replication-controller ; sleep 5 ;done"]
           resources:
             limits:
-              cpu: "250m"
-              memory: "128Mi"
+              cpu: "100m"
+              memory: "64Mi"
 
       nodeSelector:
         ec2type: t2.medium        
