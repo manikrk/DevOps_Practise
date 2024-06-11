@@ -18,7 +18,7 @@ pipeline {
         stage('Initializing Terraform'){
             steps {
                 script{
-                    dir('c_eks_from_jenkins'){
+                    dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins'){
                         sh 'terraform init'
                     }   
                 }
@@ -28,7 +28,7 @@ pipeline {
         stage('Formatting Terraform code'){
             steps {
                 script{
-                    dir('c_eks_from_jenkins') {
+                    dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
                         sh 'terraform fmt'
                     }   
                 }
@@ -38,7 +38,7 @@ pipeline {
         stage('Validating Terraform code'){
             steps {
                 script{
-                    dir('c_eks_from_jenkins') {
+                    dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
                         sh 'terraform validate'
                     }   
                 }
@@ -48,7 +48,7 @@ pipeline {
         stage('Previewing the Infra using terraform') {
             steps {
                 script{
-                    dir('c_eks_from_jenkins') {
+                    dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
                         sh 'terraform plan -out=c_eks_from_jenkins.tfplan'
                     }  
                     input(message: "Are you sure to proceed?", ok: "proceed")
@@ -59,14 +59,14 @@ pipeline {
         stage('Creating/Destroying EKS cluster'){
             steps {
                 script{
-                    dir('c_eks_from_jenkins') {
+                    dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
                         sh 'terraform $action --auto-approve'    //parameterized
                     }  
                 }
             }
         }
 
-        stage('Deploying the Nginx Application'){
+        /*stage('Deploying the Nginx Application'){
             steps {
                 script{
                     dir('c_eks_from_jenkins/ConfigurationFiles') {
@@ -75,8 +75,8 @@ pipeline {
                         sh 'kubectl apply -f service.yaml'
                     }  
                 }
-            }
-        }
+            } 
+        }*/
     }
 }
 
