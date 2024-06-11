@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout-SCM') {
             steps {
                 script{
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kvmuralikrishna9/Testing.git']])
+                    checkout scmGit(branches: [[name: '*/feature-branch']], extensions: [], userRemoteConfigs: [[url: 'git branch: \'feature-branch\', url: \'https://github.com/kvmuralikrishna9/DevOps_Practise.git\'']])
                 }
             }
         }
@@ -66,7 +66,7 @@ pipeline {
             }
         }
 
-        stage('Deploying the Nginx Application'){
+/*        stage('Deploying the Nginx Application'){
             steps {
                 script{
                     dir('c_eks_from_jenkins/ConfigurationFiles') {
@@ -76,7 +76,7 @@ pipeline {
                     }  
                 }
             }
-        }
+        }  */
     }
 }
 
