@@ -51,7 +51,7 @@ pipeline {
                     dir('c_eks_from_jenkins') {
                         sh 'terraform plan -out=c_eks_from_jenkins.tfplan'
                     }  
-                  //input(message: "Are you sure to proceed?", ok: "proceed")
+                    input(message: "Are you sure to proceed?", ok: "proceed")
                 }
             }
         }
