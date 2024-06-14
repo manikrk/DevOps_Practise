@@ -29,8 +29,6 @@ pipeline {
             }
         }
 
-
-
         stage('Initializing Terraform'){
             steps {
                 script{
@@ -96,4 +94,3 @@ pipeline {
         }*/
     }
 }
-

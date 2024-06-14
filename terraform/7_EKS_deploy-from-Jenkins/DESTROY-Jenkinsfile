@@ -57,30 +57,11 @@ pipeline {
             }
         }
 
-        stage('Updating Kubeconfig on EKS Cluster'){
-            steps {
-                script{
-                    dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
-                        sh 'aws eks update-kubeconfig --name eks-tf_cluster --region ap-south-1'
-                    }  
-                }
-            }
-        }
-
-        stage('Emptying S3 Bucket'){
-            steps {
-                script{
-                    dir('terraform/7_EKS_deploy-from-Jenkins/a_s3_dynamo-db'){
-                        sh 'aws s3 rm s3://eks-tf-s3-eks-jenkins-devenv/platform --recursive'
-                    }   
-                }
-            }
-        }
-
         stage('Destroying S3 & DynamoDB'){
             steps {
                 script{
                     dir('terraform/7_EKS_deploy-from-Jenkins/a_s3_dynamo-db'){
+                        sh 'aws s3 rm s3://eks-tf-s3-eks-jenkins-devenv/platform --recursive'
                         sh 'terraform $action --auto-approve'    //parameterized
                     }   
                 }
