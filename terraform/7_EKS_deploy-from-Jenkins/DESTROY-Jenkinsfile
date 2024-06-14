@@ -15,38 +15,6 @@ pipeline {
             }
         }
 
-        stage('Initializing Terraform'){
-            steps {
-                script{
-                    dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins'){
-                        sh 'terraform init'
-                    }   
-                }
-            }
-        }
-
-        stage('Formatting & Validating  Terraform code'){
-            steps {
-                script{
-                    dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
-                        sh 'terraform fmt'
-                        sh 'terraform validate'
-                    }   
-                }
-            }
-        }
-
-        stage('Previewing the Infra using terraform') {
-            steps {
-                script{
-                    dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
-                        sh 'terraform plan -out=c_eks_from_jenkins.tfplan'
-                    }  
-                    //input(message: "Are you sure to proceed?", ok: "proceed")
-                }
-            }
-        }
-
         stage('Creating/Destroying EKS cluster'){
             steps {
                 script{
