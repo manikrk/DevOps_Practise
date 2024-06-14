@@ -35,18 +35,6 @@ pipeline {
                 }
             }
         }
-
-        /*stage('Deploying the Nginx Application'){
-            steps {
-                script{
-                    dir('c_eks_from_jenkins/ConfigurationFiles') {
-                        sh 'aws eks update-kubeconfig --name eks-tf_cluster --region ap-south-1'
-                        sh 'kubectl apply -f deployment.yaml'
-                        sh 'kubectl apply -f service.yaml'
-                    }  
-                }
-            } 
-        }*/
     }
 }
 
