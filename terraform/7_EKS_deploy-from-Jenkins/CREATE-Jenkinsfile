@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('Checkout-SCM') {
+        stage('Checkout-SCM'){
             steps {
                 script{
                    checkout scmGit(branches: [[name: '*/feature-branch-2']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kvmuralikrishna9/DevOps_Practise.git']])
@@ -15,7 +15,7 @@ pipeline {
             }
         }
 
-        stage('Initializing S3 & DynamoDB'){
+        stage('Initialize & Creating S3, DynamoDB'){
             steps {
                 script{
                     dir('terraform/7_EKS_deploy-from-Jenkins/a_s3_dynamo-db'){
@@ -29,20 +29,11 @@ pipeline {
             }
         }
 
-        stage('Initializing Terraform'){
-            steps {
-                script{
-                    dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins'){
-                        sh 'terraform init'
-                    }   
-                }
-            }
-        }
-
-        stage('Previewing the Infra using terraform') {
+        stage('Initialize & Previewing the Infra using Terraform'){
             steps {
                 script{
                     dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
+                        sh 'terraform init'
                         sh 'terraform fmt'
                         sh 'terraform validate'
                         sh 'terraform plan -out=c_eks_from_jenkins.tfplan'
@@ -52,7 +43,7 @@ pipeline {
             }
         }
 
-        stage('Creating/Destroying EKS cluster'){
+        stage('Creating EKS cluster'){
             steps {
                 script{
                     dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
