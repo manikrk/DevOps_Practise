@@ -5,7 +5,7 @@ resource "aws_s3_bucket" "complete-project-s3-bucket" {
     tags = {
         Name = var.s3-bucket-name
         Environment = var.environment
-        Class = s3-bucket
+        Class = "s3-bucket"
     }
 }
 
@@ -31,7 +31,7 @@ resource "aws_dynamodb_table" "complete-project-dynamodb-table" {
     tags = {
         Name = var.s3-bucket-name
         Environment = var.environment
-        Class = dynamo-db
+        Class = "dynamo-db"
     }
 }
 
