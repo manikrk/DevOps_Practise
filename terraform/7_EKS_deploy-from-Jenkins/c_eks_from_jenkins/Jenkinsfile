@@ -15,20 +15,6 @@ pipeline {
             }
         }
 
-        stage('Initialize & Creating S3, DynamoDB'){
-            steps {
-                script{
-                    dir('terraform/7_EKS_deploy-from-Jenkins/a_s3_dynamo-db'){
-                        sh 'terraform init'
-                        sh 'terraform fmt'
-                        sh 'terraform validate'
-                        sh 'terraform plan -out=a_s3_dynamo-db.tfplan'
-                        sh 'terraform apply --auto-approve'    //parameterized
-                    }   
-                }
-            }
-        }
-
         stage('Initialize & Previewing the Infra using Terraform'){
             steps {
                 script{
