@@ -59,7 +59,7 @@ pipeline {
             steps {
                 script{
                     dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
-                        sh 'terraform apply --auto-approve'    //parameterized
+                        sh 'terraform $action --auto-approve'    //parameterized
                     }  
                 }
             }
