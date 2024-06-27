@@ -10,35 +10,47 @@ pipeline {
         stage('Checkout-SCM'){
             steps {
                 script{
-                   checkout scmGit(branches: [[name: '*/feature-branch-2']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kvmuralikrishna9/DevOps_Practise.git']])
+                   checkout scmGit(branches: [[name: '*/feature-branch']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kvmuralikrishna9/DevOps_Practise.git']])
                 }
             }
         }
 
-        stage('Initialize & Creating S3, DynamoDB'){
-            steps {
-                script{
-                    dir('terraform/7_EKS_deploy-from-Jenkins/a_s3_dynamo-db'){
-                        sh 'terraform init'
-                        sh 'terraform fmt'
-                        sh 'terraform validate'
-                        sh 'terraform plan -out=a_s3_dynamo-db.tfplan'
-                        sh 'terraform apply --auto-approve'    //parameterized
-                    }   
-                }
-            }
-        }
-
-        stage('Initialize & Previewing the Infra using Terraform'){
+        stage('Initializing Terraform'){
             steps {
                 script{
                     dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
                         sh 'terraform init'
-                        sh 'terraform fmt'
-                        sh 'terraform validate'
-                        sh 'terraform plan -out=c_eks_from_jenkins.tfplan'
                     }  
-                    //input(message: "Are you sure to proceed?", ok: "proceed")
+                }
+            }
+        }
+
+	stage('Formatting TF-Code'){
+            steps {
+                script{
+                    dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
+                        sh 'terraform fmt'
+                    }
+                }
+            }
+        }
+
+	stage('Validating TF-Code'){
+            steps {
+                script{
+                    dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
+                        sh 'terraform validate'
+                    }
+                }
+            }
+        }
+
+	stage('Previewing the infrastructure'){
+            steps {
+                script{
+                    dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
+                        sh 'terraform plan -out=c_eks_from_jenkins.tfplan'
+                    }
                 }
             }
         }
@@ -47,7 +59,7 @@ pipeline {
             steps {
                 script{
                     dir('terraform/7_EKS_deploy-from-Jenkins/c_eks_from_jenkins') {
-                        sh 'terraform apply --auto-approve'    //parameterized
+                        sh 'terraform $action --auto-approve'    //parameterized
                     }  
                 }
             }
